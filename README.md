@@ -1,5 +1,5 @@
 # loading-protobuf-using-descriptors
-This repot demonstrates how to read and load protobuf definitions at run-time using protobuf descriptors in Java
+This repot demonstrates how to read and load protobuf definitions at **run-time** using [_protobuf descriptors_](https://protobuf.dev/reference/java/api-docs/com/google/protobuf/Descriptors) in Java
 
 ## How to run using custom descriptor files
 - Generate protobuf `descriptor-set` file of your `.proto` files using prtobuf compilers using following command:\
