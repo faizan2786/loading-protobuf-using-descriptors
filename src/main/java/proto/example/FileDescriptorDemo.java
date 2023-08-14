@@ -3,9 +3,9 @@ package proto.example;
 import com.google.protobuf.DescriptorProtos.FileDescriptorSet;
 import com.google.protobuf.DescriptorProtos.FileDescriptorProto;
 
-import com.google.protobuf.Descriptors.FileDescriptor;  //file level descriptor
-import com.google.protobuf.Descriptors.Descriptor;      // message level descriptor
-import com.google.protobuf.Descriptors.FieldDescriptor; // field level descriptor
+import com.google.protobuf.Descriptors.FileDescriptor;      //file level descriptor
+import com.google.protobuf.Descriptors.Descriptor;          // message level descriptor
+import com.google.protobuf.Descriptors.FieldDescriptor;     // field level descriptor
 
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -15,7 +15,7 @@ public class FileDescriptorDemo {
     public static void main (String[] args) {
 
         if (args.length != 1) {
-            System.out.println("Descriptor file name argument missing!");
+            System.out.println("Missing argument: Descriptor file name expected!");
             return;
         }
 
@@ -40,6 +40,9 @@ public class FileDescriptorDemo {
 
             FileDescriptorSet fileDescriptorSet = FileDescriptorSet.parseFrom(fileStream);
 
+            System.out.println("Number of protobuf files in the descriptor: " + fileDescriptorSet.getFileCount());
+            System.out.println();
+
             // loop through all proto files in the descriptorSet
             for (FileDescriptorProto fileDescriptorProto : fileDescriptorSet.getFileList()) {
 
@@ -52,6 +55,7 @@ public class FileDescriptorDemo {
                     for (FieldDescriptor fieldDescriptor : messageDescriptor.getFields()) {
                         System.out.println("Field Name: " + fieldDescriptor.getName() + ", Type:" + fieldDescriptor.getType());
                     }
+                    System.out.println();
                 }
             }
 
