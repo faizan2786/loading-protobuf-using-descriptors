@@ -3,11 +3,6 @@ syntax = "proto3";
 package proto.example;
 option java_multiple_files = true;
 
-enum Gender {
-  MALE = 0;
-  FEMALE = 1;
-}
-
 enum Department {
   HR = 0;
   ACCOUNTING = 1;
@@ -19,8 +14,7 @@ message Employee {
   int32 id = 1;
   string name = 2;
   string email = 3;
-  Gender gender = 4;
-  Department department = 5;
+  Department department = 4;
 }
 
 message EmployeesBook {
