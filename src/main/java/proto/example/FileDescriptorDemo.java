@@ -2,8 +2,10 @@ package proto.example;
 
 import com.google.protobuf.DescriptorProtos.FileDescriptorSet;
 import com.google.protobuf.DescriptorProtos.FileDescriptorProto;
-import com.google.protobuf.Descriptors.Descriptor;
-import com.google.protobuf.Descriptors.FileDescriptor;
+
+import com.google.protobuf.Descriptors.FileDescriptor;  //file level descriptor
+import com.google.protobuf.Descriptors.Descriptor;      // message level descriptor
+import com.google.protobuf.Descriptors.FieldDescriptor; // field level descriptor
 
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -38,11 +40,18 @@ public class FileDescriptorDemo {
 
             FileDescriptorSet fileDescriptorSet = FileDescriptorSet.parseFrom(fileStream);
 
+            // loop through all proto files in the descriptorSet
             for (FileDescriptorProto fileDescriptorProto : fileDescriptorSet.getFileList()) {
+
                 FileDescriptor fileDescriptor = FileDescriptor.buildFrom(fileDescriptorProto, new FileDescriptor[0]);
 
+                // print all messages and its definitions (in each file)
                 for (Descriptor messageDescriptor : fileDescriptor.getMessageTypes()) {
                     System.out.println("Message Name: " + messageDescriptor.getName());
+
+                    for (FieldDescriptor fieldDescriptor : messageDescriptor.getFields()) {
+                        System.out.println("Field Name: " + fieldDescriptor.getName() + ", Type:" + fieldDescriptor.getType());
+                    }
                 }
             }
 
